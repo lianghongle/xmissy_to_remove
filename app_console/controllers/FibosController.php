@@ -16,10 +16,12 @@ class FibosController extends \strong\controllers\ConsoleController
 {
     /**
      * EOS/FO 兑换比率
+     *
+     * 60s 一次
      */
     public function actionGetExchangeInfo()
     {
-        $url = 'https://fibos.io/1.0/app/getExchangeInfo';
+        $url = 'https://fibos.io/1.0/app/getExchangeInfo';//网站刷新接口，20s 一次
 
         $curl = new Curl();
         $response = $curl->get($url);
