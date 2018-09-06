@@ -19,6 +19,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
     ];
     public $js = [
+        'plugins/tongji.baidu.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
