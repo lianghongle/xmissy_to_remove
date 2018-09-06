@@ -2,7 +2,6 @@
 #/yii
 /yii_test
 /yii_test.bat
-*-local.php
 
 # phpstorm project files
 .idea
