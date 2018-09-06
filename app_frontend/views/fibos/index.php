@@ -6,33 +6,61 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
+    <div>
+        <input type="text" value="" id="datetimepicker-begin">
+        <input type="text" value="" id="datetimepicker-end">
+
+        <button class="btn btn-success" id="search">搜索</button>
+    </div>
+
     <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
     <div id="echarts" style="width: 600px;height:400px;"></div>
 
 </div>
 
 <script src="/plugins/echarts.js"></script>
+<link href="/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen"/>
+<script src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script>
 
     $(function(){
+
+        $('#datetimepicker-begin').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:00',
+        });
+        $('#datetimepicker-end').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:00'
+        });
+
+        draw()
+
+        $("#search").on('click', function () {
+            draw()
+        })
+    })
+
+    function draw()
+    {
         $.ajax({
-            'type':'GET',
-            'url':'/fibos/get-exchange-info',
+            'type': 'GET',
+            'url': '/fibos/get-exchange-info',
             'data': {
+                begin: $("#datetimepicker-begin").val(),
+                end: $("#datetimepicker-end").val(),
             },
-            'dataType':'JSON',
-            'success':function (res) {
-                if(res.code == 0){
+            'dataType': 'JSON',
+            'success': function (res) {
+                if (res.code == 0) {
                     console.log(11)
-                    if(res.data){
+                    if (res.data) {
                         myEcharts('echarts', res.data)
                     }
-                }else{
+                } else {
                     console.log('异常：' + res.code)
                 }
             }
         });
-    })
+    }
 
     function myEcharts(id, option)
     {

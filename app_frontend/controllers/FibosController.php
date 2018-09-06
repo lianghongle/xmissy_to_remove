@@ -33,10 +33,10 @@ class FibosController extends \strong\controllers\WebController
 
         $condition = [];
         if($begin != ''){
-            $condition['created_at'] = ['>=', $begin];
+            $condition = ['and', ['>=', 'created_at', strtotime($begin)], $condition];
         }
         if($end != ''){
-            $condition['created_at'] = ['<=', $end];
+            $condition = ['and', ['<=', 'created_at', strtotime($end)], $condition];
         }
 
         $data_db = ExchangeInfo::find()->where($condition)->select(['price', 'created_at'])->asArray()->all();
