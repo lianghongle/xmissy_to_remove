@@ -18,7 +18,7 @@ $this->title = 'My Yii Application';
 
 </div>
 
-<script src="/plugins/echarts.js"></script>
+<script src="/plugins/echarts.min.js"></script>
 <link href="/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen"/>
 <script src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
 <script>
