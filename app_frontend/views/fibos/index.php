@@ -7,8 +7,8 @@ $this->title = 'My Yii Application';
 <div class="site-index">
 
     <div>
-        <input type="text" value="" id="datetimepicker-begin">
-        <input type="text" value="" id="datetimepicker-end">
+        <input type="text" value="<?php echo $default_start;?>" id="datetimepicker-begin">
+        <input type="text" value="<?php echo $default_end;?>" id="datetimepicker-end">
 
         <button class="btn btn-success" id="search">搜索</button>
     </div>
@@ -26,10 +26,16 @@ $this->title = 'My Yii Application';
     $(function(){
 
         $('#datetimepicker-begin').datetimepicker({
+            startDate:'2018-09-06 00:00',
+            endDate:'',
             format: 'yyyy-mm-dd hh:ii:00',
+            todayBtn:true
         });
         $('#datetimepicker-end').datetimepicker({
-            format: 'yyyy-mm-dd hh:ii:00'
+            startDate:'2018-09-06 00:00',
+            endDate:'',
+            format: 'yyyy-mm-dd hh:ii:00',
+            todayBtn:true
         });
 
         draw()

@@ -18,7 +18,10 @@ class FibosController extends \strong\controllers\WebController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', [
+            'default_start' => date('Y-m-d 00:00', time()),
+            'default_end' => date('Y-m-d H:i', time()),
+        ]);
     }
 
     /**
@@ -44,8 +47,17 @@ class FibosController extends \strong\controllers\WebController
             'title' => [
                 'text'=> 'EOS/FO 兑换比率'
             ],
+            'grid' => [
+//                'left' => '3%',
+//                'right' => '6%',
+//                'bottom' => '3%',
+                'containLabel' => true,
+            ],
             'tooltip' =>[
                 'trigger' =>  'axis',
+                'feature' => [
+                    'saveAsImage' => []
+                ]
             ],
             'xAxis' => [
 //                'type' => 'time',
@@ -66,7 +78,7 @@ class FibosController extends \strong\controllers\WebController
             ],
             'series' => [
                 [
-                    'name' => '模拟数据',
+                    'name' => 'price',
                     'data' => [],
                     'type' => 'line'
                 ]
@@ -94,7 +106,7 @@ class FibosController extends \strong\controllers\WebController
             }
 //            $echarts_option['series'][0]['data'] = $times;
 
-            $kong = ($echarts_option['yAxis']['max'] - $echarts_option['yAxis']['min'])/10;
+            $kong = round(($echarts_option['yAxis']['max'] - $echarts_option['yAxis']['min'])/10, 4);
             $echarts_option['yAxis']['max'] += $kong;
             $echarts_option['yAxis']['min'] -= $kong;
         }
